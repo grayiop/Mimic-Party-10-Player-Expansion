@@ -1,6 +1,8 @@
 # 10 Player Expansion for Mimic Party
 
-**Runtime 1.1.5 · by arribbaa**
+**Runtime 1.1.6 compatibility candidate · original mod by arribbaa**
+
+This checkout adds a **local test candidate for Mimic Party v0.2.10 / Steam build 26008035**. It requires the companion **Interop Bootstrap 1.0.4 candidate**; Pack 1.0.3 alone fails before plugins load. See [v0.2.10 setup and validation](compatibility/v0.2.10/README.md). Builds and offline checks pass; live gameplay acceptance is pending. Published 1.1.5 downloads below retain their documented v0.2.5 support.
 
 Up to **10 total players** in private Classic and Versus lobbies. Versus keeps the game's RED/BLUE selection: the mod does not impose equal teams or a separate five-player quota per side.
 
@@ -9,6 +11,7 @@ Up to **10 total players** in private Classic and Versus lobbies. Versus keeps t
 ## Requirements
 
 - [BepInEx Pack for Mimic Party](https://www.nexusmods.com/mimicparty/mods/3) **1.0.3**
+- For v0.2.10: the local **Interop Bootstrap 1.0.4 candidate** described above, installed over Pack 1.0.3.
 - [Mimic Party Modding Core](https://www.nexusmods.com/mimicparty/mods/2) **1.0.0**
 - Windows x64 / Steam / IL2CPP build listed in [Compatibility](https://github.com/LocoPablito/Mimic-Party-10-Player-Expansion/blob/main/COMPATIBILITY.md)
 

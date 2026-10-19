@@ -1,0 +1,57 @@
+diff --git a/src/MimicParty.InteropBootstrap/Bootstrap.cs b/src/MimicParty.InteropBootstrap/Bootstrap.cs
+--- a/src/MimicParty.InteropBootstrap/Bootstrap.cs
++++ b/src/MimicParty.InteropBootstrap/Bootstrap.cs
+@@ -4,7 +4,7 @@
+ 
+ namespace Arribbaa.MimicParty.InteropBootstrap;
+ 
+-[PatcherPluginInfo("com.arribbaa.mimicparty.interopbootstrap", "Mimic Party Interop Bootstrap", "1.0.3")]
++[PatcherPluginInfo("com.arribbaa.mimicparty.interopbootstrap", "Mimic Party Interop Bootstrap", "1.0.4")]
+ public sealed class Bootstrap : BasePatcher
+ {
+     private const string V0173GameHash = "44bbc82bdae73c1c86559a1f091ee9c7a3ae510a02c2d83f16b686ecdd9c8b11";
+@@ -18,6 +18,9 @@
+ 
+     private const string V025GameHash = "02546fc8797c32a9f98a8b93a7eefc11f52fb58e83fd51db29fd83eb5601d25a";
+     private const string V025MetadataHash = "dded356e7a47bc941b63e4a09280bd7fb8e777bf5748366d47345363df9a9bbf";
++
++    private const string V0210GameHash = "35bf5cc8a954a827c3c20fe76bd9d92191eed9dc83140101231081ba018a15f2";
++    private const string V0210MetadataHash = "7db463145f922d7a83c0c29879f5467bd40f82562ea549701f71221f6a35aaea";
+ 
+     public Bootstrap()
+     {
+@@ -69,6 +72,12 @@
+             {
+                 profileName = "Mimic Party v0.2.5 / Sep 30 / Steam 25629135";
+                 layout = MetadataRepair.V025Layout;
++            }
++            else if (string.Equals(gameHash, V0210GameHash, StringComparison.OrdinalIgnoreCase) &&
++                     string.Equals(metadataHash, V0210MetadataHash, StringComparison.OrdinalIgnoreCase))
++            {
++                profileName = "Mimic Party v0.2.10 / Oct 19 / Steam 26008035";
++                layout = MetadataRepair.V0210Layout;
+             }
+             else
+             {
+diff --git a/src/MimicParty.InteropBootstrap/MetadataRepair.cs b/src/MimicParty.InteropBootstrap/MetadataRepair.cs
+--- a/src/MimicParty.InteropBootstrap/MetadataRepair.cs
++++ b/src/MimicParty.InteropBootstrap/MetadataRepair.cs
+@@ -27,6 +27,9 @@
+ 
+     public static readonly CapturedLayout V025Layout =
+         new(4026, 22552, 14635, new[] { 0x324, 0x3c4, 0x3e4 });
++
++    public static readonly CapturedLayout V0210Layout =
++        new(4021, 22542, 14641, new[] { 0x324, 0x3c4, 0x3e4 });
+ 
+     public static string Sha256(byte[] bytes) =>
+         Convert.ToHexString(SHA256.HashData(bytes)).ToLowerInvariant();
+diff --git a/src/MimicParty.InteropBootstrap/MimicParty.InteropBootstrap.csproj b/src/MimicParty.InteropBootstrap/MimicParty.InteropBootstrap.csproj
+--- a/src/MimicParty.InteropBootstrap/MimicParty.InteropBootstrap.csproj
++++ b/src/MimicParty.InteropBootstrap/MimicParty.InteropBootstrap.csproj
+@@ -1,4 +1,4 @@
+ <Project Sdk="Microsoft.NET.Sdk">
+-<PropertyGroup><TargetFramework>net6.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><AssemblyName>MimicParty.InteropBootstrap</AssemblyName><Version>1.0.3</Version><LangVersion>latest</LangVersion><CheckEolTargetFramework>false</CheckEolTargetFramework><RestoreAdditionalProjectSources>https://api.nuget.org/v3/index.json;https://nuget.bepinex.dev/v3/index.json;https://nuget.samboy.dev/v3/index.json</RestoreAdditionalProjectSources></PropertyGroup>
++<PropertyGroup><TargetFramework>net6.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><AssemblyName>MimicParty.InteropBootstrap</AssemblyName><Version>1.0.4</Version><LangVersion>latest</LangVersion><CheckEolTargetFramework>false</CheckEolTargetFramework><RestoreAdditionalProjectSources>https://api.nuget.org/v3/index.json;https://nuget.bepinex.dev/v3/index.json;https://nuget.samboy.dev/v3/index.json</RestoreAdditionalProjectSources></PropertyGroup>
+ <ItemGroup><PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.788" IncludeAssets="compile" /><PackageReference Include="BepInEx.Preloader.Core" Version="6.0.0-be.788" IncludeAssets="compile" /></ItemGroup>
+ </Project>

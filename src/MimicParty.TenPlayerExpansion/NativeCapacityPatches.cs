@@ -19,6 +19,12 @@ internal static class NativeCapacityPatches
     private const string DynamicCapacityBuildV025Sha256 =
         "02546fc8797c32a9f98a8b93a7eefc11f52fb58e83fd51db29fd83eb5601d25a";
 
+    private const string DynamicCapacityBuildV0210Sha256 =
+        "35bf5cc8a954a827c3c20fe76bd9d92191eed9dc83140101231081ba018a15f2";
+
+    private const string DynamicCapacityMetadataV0210Sha256 =
+        "7db463145f922d7a83c0c29879f5467bd40f82562ea549701f71221f6a35aaea";
+
     private const string DynamicCapacityHelper =
         "33 C0 83 F9 01 0F 95 C0 83 C0 04 C3";
 
@@ -134,6 +140,9 @@ internal static class NativeCapacityPatches
         return string.Equals(hash, DynamicCapacityBuildV0173Sha256, StringComparison.OrdinalIgnoreCase) ||
                string.Equals(hash, DynamicCapacityBuildV023Sha256, StringComparison.OrdinalIgnoreCase) ||
                string.Equals(hash, DynamicCapacityBuildV0233Sha256, StringComparison.OrdinalIgnoreCase) ||
-               string.Equals(hash, DynamicCapacityBuildV025Sha256, StringComparison.OrdinalIgnoreCase);
+               string.Equals(hash, DynamicCapacityBuildV025Sha256, StringComparison.OrdinalIgnoreCase) ||
+               (string.Equals(hash, DynamicCapacityBuildV0210Sha256, StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(CoreApi.Build.MetadataSha256, DynamicCapacityMetadataV0210Sha256,
+                    StringComparison.OrdinalIgnoreCase));
     }
 }

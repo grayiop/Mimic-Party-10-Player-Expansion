@@ -76,7 +76,10 @@ dll_sha = SHA(dll)
 prefix = 'MimicParty10PlayerExpansion/'
 files = {
     prefix + name: (ROOT / name).read_bytes()
-    for name in ['README.md', 'CHANGELOG.md', 'COMPATIBILITY.md', 'LICENSE.txt', 'SECURITY.md']
+    for name in [
+        'README.md', 'CHANGELOG.md', 'COMPATIBILITY.md', 'LICENSE.txt', 'SECURITY.md',
+        'compatibility/v0.2.10/README.md', 'compatibility/v0.2.10/interop-bootstrap.patch'
+    ]
 }
 files['BepInEx/plugins/MimicParty10PlayerExpansion.dll'] = dll
 files[prefix + 'PROVENANCE.json'] = JSON({
@@ -84,6 +87,7 @@ files[prefix + 'PROVENANCE.json'] = JSON({
     'Component': CFG['Component'],
     'Version': CFG['Version'],
     'Revision': CFG['Revision'],
+    'Prerelease': CFG['Prerelease'],
     'BinaryVersions': CFG['BinaryVersions'],
     'BinarySHA256': {'Expansion': dll_sha},
     'RuntimeRecompiled': True,
@@ -93,7 +97,8 @@ files[prefix + 'PROVENANCE.json'] = JSON({
     'IncludesBootstrap': False,
     'Requirements': {
         'Core': CFG['Nexus']['core'],
-        'Pack': CFG['Nexus']['pack']
+        'Pack': CFG['Nexus']['pack'],
+        'InteropBootstrapMinimumVersionForV0210': '1.0.4'
     },
     'SupportedGameProfiles': [
         {
@@ -115,6 +120,12 @@ files[prefix + 'PROVENANCE.json'] = JSON({
             'Label': 'v0.2.5 / Sep 30 / Steam 25629135',
             'GameAssemblySHA256': '02546fc8797c32a9f98a8b93a7eefc11f52fb58e83fd51db29fd83eb5601d25a',
             'MetadataSHA256': 'dded356e7a47bc941b63e4a09280bd7fb8e777bf5748366d47345363df9a9bbf'
+        },
+        {
+            'Label': 'v0.2.10 / Oct 19 / Steam 26008035',
+            'GameAssemblySHA256': '35bf5cc8a954a827c3c20fe76bd9d92191eed9dc83140101231081ba018a15f2',
+            'MetadataSHA256': '7db463145f922d7a83c0c29879f5467bd40f82562ea549701f71221f6a35aaea',
+            'Validation': 'Static checks only; live acceptance pending'
         }
     ]
 })

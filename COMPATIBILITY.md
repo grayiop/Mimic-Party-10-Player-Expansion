@@ -1,5 +1,20 @@
 # Compatibility
 
+## Mimic Party v0.2.10 — captured 19 October 2026 (candidate)
+
+- Steam build **26008035**, Windows x64 / Steam / IL2CPP, Unity **6000.4.2f1**.
+- Expansion **1.1.6 candidate**, Core **1.0.0**, Pack **1.0.3** with the companion **Interop Bootstrap 1.0.4 candidate**.
+- GameAssembly SHA-256: `35bf5cc8a954a827c3c20fe76bd9d92191eed9dc83140101231081ba018a15f2`.
+- Metadata SHA-256: `7db463145f922d7a83c0c29879f5467bd40f82562ea549701f71221f6a35aaea`.
+
+Executable-section scanning found exactly one existing shared capacity signature at RVA `0x1FBF570`; the patch starts at `0x1FBF575`. None of the four legacy signatures matched. The new profile requires both captured hashes and retains the existing transactional checks and live capacity probe. Required generated hook signatures remain present, including `LaunchRematch(INetworkService)` and `RoundPhase.Playback = 4`.
+
+Pack 1.0.3 rejects this fingerprint. Its uncorrected generated CoreModule contains duplicate empty helper types and cannot load in .NET 6. The companion bootstrap profile validates **4021 TypeDefs / 22542 methods / 14641 fields**, then repairs name indexes at TypeDef rows `0x324`, `0x3C4`, and `0x3E4`.
+
+Offline checks reproduced the original load failure, rejected the older layout, verified exactly three changed bytes, confirmed repair idempotence, and loaded `UnityEngine.Object`, `UnityEngine.Application`, and `UnityEngine.LogType` from the repaired assembly. Original game installation files were not changed during these checks.
+
+**Live acceptance is pending.** Successful startup, in-process capacity self-check, lobby displays, ten-client play, voice isolation, and rematches still need in-game validation. See [candidate instructions and bootstrap source patch](compatibility/v0.2.10/README.md).
+
 ## Mimic Party v0.2.5 — captured 30 September 2026
 
 - Steam build **25629135**

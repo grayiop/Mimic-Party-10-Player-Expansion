@@ -1,5 +1,13 @@
 # Changelog
 
+## Runtime 1.1.6 — local v0.2.10 compatibility candidate
+
+- Recognizes the captured v0.2.10 / Steam build 26008035 GameAssembly and metadata hashes and selects the existing shared capacity-helper patch.
+- Retains transactional byte verification, rollback, and the required live capacity self-check; no signature or hook changes were needed by static inspection.
+- Includes a companion source patch for Interop Bootstrap 1.0.4 to repair the new generated CoreModule layout. Pack 1.0.3 alone cannot load plugins on this build.
+- Aligns the assembly version with the plugin version and marks release metadata as prerelease.
+- Build and offline metadata-repair checks pass. Live startup and multiplayer acceptance remain pending; this is not a verified stable release.
+
 ## Packaging revision R2 — 30 September 2026
 
 - Promotes Expansion **1.1.5** to the stable, live-verified release path for Mimic Party **v0.2.5 / Steam build 25629135**.

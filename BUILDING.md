@@ -6,8 +6,8 @@ Use the .NET 8 SDK to build the net6.0 plugin. Clone the Core source next to thi
 ./build.ps1
 ```
 
-Core source revision used for compilation: 46c03672bab67ed32a060198ec8f2d56d3fdfd6a.
+Core source revision pinned by CI: de85239b8bb6955fce28ef584073cdd63b53dfcd. The build script also searches `_deps/MimicParty-Modding`.
 
-Publication uses the existing runtime DLL from the pinned release asset in release.json, not the newly compiled output. Its SHA-256 must be 245aa2148807a56b48105fef49352c628830e08097cf80d22848adf9e5627a8c. Run `python scripts/package_release.py` to assemble the R3 archive and hashes.
+Run `python scripts/package_release.py` after building. It packages the compiled `bin/Release/net6.0/MimicParty10PlayerExpansion.dll` and documentation, verifies the archive, and writes the ZIP and SHA-256 manifest to `dist/`. Version, revision, and prerelease status come from `release.json`.
 
-The runtime source is preserved; R3 changes distribution/docs only. Private regression fixtures and game-derived captures are not current source-tree or release dependencies.
+The v0.2.10 candidate also needs an updated bootstrap from the separate Pack project. See [candidate build instructions](compatibility/v0.2.10/README.md) and its reproducible source patch. Private game-derived captures are not source-tree or release dependencies.
